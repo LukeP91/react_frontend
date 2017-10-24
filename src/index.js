@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
-import App from './App';
-import {createStore, applyMiddleware} from 'redux'
+import React from 'react'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { reducer } from './appRedux'
+import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
+import reducer from './reducers/index'
+import App from './App'
 
 const store = createStore(
   reducer,
@@ -19,4 +19,4 @@ const AppWithStore = (
   </Provider>
 );
 
-ReactDOM.render(AppWithStore, document.getElementById('root'));
+render(AppWithStore, document.getElementById('root'));
