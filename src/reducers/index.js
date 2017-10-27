@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import usersFetch from './usersFetch'
+import users from './users'
 
 export default combineReducers({
-  usersFetch
+  users
 });

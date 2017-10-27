@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
+import SortableColumnHeader from '../../containers/users_table/SortableColumnHeader'
 
 export default class TableHeader extends Component {
   render(){
     return(
       <thead>
         <tr>
-          <th>#</th>
-          <th>Full name</th>
-          <th>Username</th>
-          <th>Email</th>
+          <SortableColumnHeader columnName={'id'}>#</SortableColumnHeader>
+          <SortableColumnHeader columnName={'name'}>Full name</SortableColumnHeader>
+          <SortableColumnHeader columnName={'username'}>Username</SortableColumnHeader>
+          <SortableColumnHeader columnName={'email'}>Email</SortableColumnHeader>
         </tr>
       </thead>
     )
