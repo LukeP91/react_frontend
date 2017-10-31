@@ -4,6 +4,7 @@ import { fetchUsers } from '../../actions/usersActions'
 import UserRow from '../../components/users_table/UsersTableRow'
 import TableHeader from '../../components/users_table/TableHeader';
 import { filteredUsers } from '../../selectors/filteredUsers'
+import { Table } from 'react-bootstrap'
 
 class UsersTable extends Component {
   componentDidMount() {
@@ -12,12 +13,12 @@ class UsersTable extends Component {
 
   render() {
     return (
-      <table>
+      <Table striped bordered condensed hover>
         <TableHeader/>
         <tbody>
         {this.props.users.map(UserRow)}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }

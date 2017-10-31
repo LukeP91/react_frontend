@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const UserRow = (user, i) => {
   return(
     <tr key={i}>
-      <td>{user.id}</td>
+      <td>{i + 1}</td>
       <td>{user.name}</td>
       <td>{user.username}</td>
       <td>{user.email}</td>
