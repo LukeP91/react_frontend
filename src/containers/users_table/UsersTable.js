@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchUsers } from '../../actions/usersActions'
 import UserRow from '../../components/users_table/UsersTableRow'
 import TableHeader from '../../components/users_table/TableHeader';
+import { filteredUsers } from '../../selectors/filteredUsers'
 
 class UsersTable extends Component {
   componentDidMount() {
@@ -10,13 +11,11 @@ class UsersTable extends Component {
   };
 
   render() {
-    console.log('this sorted users: ', this.props.sortedUsers);
-
     return (
       <table>
         <TableHeader/>
         <tbody>
-        {this.props.sortedUsers.map(UserRow)}
+        {this.props.users.map(UserRow)}
         </tbody>
       </table>
     );
@@ -24,9 +23,8 @@ class UsersTable extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('changed state users', state.users);
   return {
-    sortedUsers: state.users.sortedUsers,
+    users: filteredUsers(state.users.sortedUsers, state.users.options.filterByEmail),
   }
 };
 

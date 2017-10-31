@@ -1,37 +1,8 @@
 import { types } from '../actions/usersActions'
+import { sortedUsers, sortType } from "../selectors/sortedUsers";
 
-const initState = {users: [], options: {sortByColumn: '', sortType: ''}, sortedUsers: []}
 
-const sortType = (options, sortByColumn) => {
-  if(sortByColumn === options.sortByColumn) {
-    if(options.sortType === '' ) {
-      return 'ASC'
-    } else if(options.sortType === 'ASC') {
-      return 'DSC'
-    } else {
-      return ''
-    }
-  } else {
-    return 'ASC'
-  }
-}
-const sortByColumn = (key, order) => {
-  console.log(key, order);
-  return (obj1, obj2) => {
-    if(order === 'ASC') {
-      return obj1[key] > obj2[key] ? 1 : -1;
-    }
-    return obj1[key] < obj2[key] ? 1 : -1;
-  }
-};
-
-const sortedUsers = (users, columnName, order) => {
-    if(order === '') {
-      return users
-    }
-    const usersToSort = [...users];
-    return usersToSort.sort(sortByColumn(columnName, order));
-};
+const initState = {users: [], options: {sortByColumn: '', sortType: '', filterByEmail: ''}, sortedUsers: []}
 
 const users = (state = initState, action) => {
   const {type, payload} = action;
@@ -47,7 +18,6 @@ const users = (state = initState, action) => {
       };
     }
     case types.SET_SORT_BY: {
-      console.log('setting up new sort by collection!');
       return {
         ...state,
         sortedUsers: sortedUsers(state.users, payload.sortByColumn, sortType(state.options, payload.sortByColumn)),
@@ -55,6 +25,15 @@ const users = (state = initState, action) => {
           ...state.options,
           sortByColumn: payload.sortByColumn,
           sortType: sortType(state.options, payload.sortByColumn)
+        }
+      }
+    }
+    case types.FILTER_BY_EMAIL: {
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          filterByEmail: payload.filterByEmail
         }
       }
     }
