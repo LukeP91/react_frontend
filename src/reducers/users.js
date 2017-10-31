@@ -2,7 +2,11 @@ import { types } from '../actions/usersActions'
 import { sortedUsers, sortType } from "../selectors/sortedUsers";
 
 
-const initState = {users: [], options: {sortByColumn: '', sortType: '', filterByEmail: ''}, sortedUsers: []}
+const initState = {
+  users: [],
+  options: {sortByColumn: '', sortType: '', filterBy: {column: 'email', value: ''}},
+  sortedUsers: []
+}
 
 const users = (state = initState, action) => {
   const {type, payload} = action;
@@ -28,12 +32,15 @@ const users = (state = initState, action) => {
         }
       }
     }
-    case types.FILTER_BY_EMAIL: {
+    case types.FILTER_BY: {
       return {
         ...state,
         options: {
           ...state.options,
-          filterByEmail: payload.filterByEmail
+          filterBy: {
+            column: payload.filterBy.column,
+            value: payload.filterBy.value
+          }
         }
       }
     }

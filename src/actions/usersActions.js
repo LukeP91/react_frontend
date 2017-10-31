@@ -3,7 +3,7 @@ export const types = {
   FETCH_USERS_SUCCESS: 'FETCH_USERS_SUCCESS',
   FETCH_USERS_ERROR: 'FETCH_USERS_ERROR',
   SET_SORT_BY: 'SET_SORT_BY',
-  FILTER_BY_EMAIL: 'FILTER_BY_EMAIL'
+  FILTER_BY: 'FILTER_BY'
 };
 
 const fetchUsersRequest = () => {
@@ -36,11 +36,14 @@ export const setSortBy = (sortByColumn) => {
   }
 };
 
-export const filterByEmail = (email) => {
+export const filterBy = (value, column) => {
   return {
-    type: types.FILTER_BY_EMAIL,
+    type: types.FILTER_BY,
     payload: {
-      filterByEmail: email
+      filterBy: {
+        column,
+        value
+      }
     }
   }
 }

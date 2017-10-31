@@ -1,9 +1,9 @@
-export const filteredUsers = (users, email) => {
-  if(email === '') {
+export const filteredUsers = (users, filterBy) => {
+  if(filterBy.value === '') {
     return users
   }
 
   return users.filter((user) => {
-    return user.email.toLowerCase().includes(email) }
+    return user[filterBy.column].toLowerCase().includes(filterBy.value) }
   )
 };

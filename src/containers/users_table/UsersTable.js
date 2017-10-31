@@ -24,7 +24,7 @@ class UsersTable extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: filteredUsers(state.users.sortedUsers, state.users.options.filterByEmail),
+    users: filteredUsers(state.users.sortedUsers, state.users.options.filterBy),
   }
 };
 
