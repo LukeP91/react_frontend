@@ -7,25 +7,17 @@ let FilterInput = ({dispatch}) => {
 
   return (
     <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
+      <input
+        ref={node => {
+          input = node
+        }}
+        onChange={e => {
           if (!input.value.trim()) {
             return
           }
           dispatch(filterByEmail(input.value))
-          input.value = ''
         }}
-      >
-        <input
-          ref={node => {
-            input = node
-          }}
-        />
-        <button type="submit">
-          Filter by Email
-        </button>
-      </form>
+      />
     </div>
   )
 }
