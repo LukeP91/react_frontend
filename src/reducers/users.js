@@ -4,7 +4,7 @@ import { sortedUsers, sortType } from "../selectors/sortedUsers";
 
 const initState = {
   users: [],
-  options: {sortByColumn: '', sortType: '', filterBy: {column: 'email', value: ''}},
+  options: {sortByColumn: '', sortType: '', filters: [{column: 'email', value: 'em'}, {column: 'username', value: 'am'}]},
   sortedUsers: []
 }
 
@@ -32,7 +32,7 @@ const users = (state = initState, action) => {
         }
       }
     }
-    case types.FILTER_BY: {
+    case types.REMOVE_FILTER: {
       return {
         ...state,
         options: {
